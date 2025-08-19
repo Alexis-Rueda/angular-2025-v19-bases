@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   templateUrl: './counter-page.component.html',
@@ -16,14 +16,16 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     button:hover {
       background-color: #0056b3;
     }
-  `
+  `,
 })
 export class CounterPageComponent {
 
   count = 0;
+  counterSignal = signal(10);
 
   incrementBy(value: number) {
     this.count += value;
+    this.counterSignal.update(current => current + value);
   }
 
   decrementBy(value: number) {
@@ -32,5 +34,6 @@ export class CounterPageComponent {
 
   resetCounter() {
     this.count = 0;
+    this.counterSignal.set(0);
   }
 }
