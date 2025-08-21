@@ -13,16 +13,22 @@
     <h3>Lista:</h3>
     <ul class="list-group">
       @for (character of characters(); track character.id; let idx = $index) {
-        <li class="list-group-item">
-          <span> {{ idx + 1 }}. {{ character.name }}</span>
-          <strong
-            [class.text-danger]="character.power > 9000"
-            [class.text-info]="character.power < 9000"
-          >
-          <!-- [ngClass]="powerClasses()" -->
-            ({{ character.power }})
-          </strong>
-        </li>
+        @if (character.power > 2000) {
+          <li class="list-group-item">
+            <span> {{ idx + 1 }}. {{ character.name }}</span>
+            <strong
+              [class.text-danger]="character.power > 9000"
+              [class.text-info]="character.power < 9000"
+            >
+            <!-- [ngClass]="powerClasses()" -->
+              ({{ character.power }})
+            </strong>
+          </li>
+        } @else {
+          <li class="list-group-item">
+            <strong>Aquí no hay nadie</strong>
+          </li>
+        }
        }
     </ul>
   </div>
