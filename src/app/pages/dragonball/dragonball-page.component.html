@@ -12,9 +12,18 @@
   <div class="col-12 col-sm-6">
     <h3>Lista:</h3>
     <ul class="list-group">
-      <li class="list-group-item">Goku</li>
-      <li class="list-group-item">Vegeta</li>
-      <li class="list-group-item">Gohan</li>
+      @for (character of characters(); track character.id; let idx = $index) {
+        <li class="list-group-item">
+          <span> {{ idx + 1 }}. {{ character.name }}</span>
+          <strong
+            [class.text-danger]="character.power > 9000"
+            [class.text-info]="character.power < 9000"
+          >
+          <!-- [ngClass]="powerClasses()" -->
+            ({{ character.power }})
+          </strong>
+        </li>
+       }
     </ul>
   </div>
 
